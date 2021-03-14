@@ -1,0 +1,60 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package org.example.demo;
+
+message CardRequest {
+    int32 regMonth = 1;
+    int32 regYear = 2;
+    int32 cvc = 3;
+    string cardNum = 4;
+    string ownerId = 5;
+}
+
+message CardResponse {
+    string id = 1;
+    int32 expMonth = 2;
+    int32 expYear = 3;
+    int32 cvc = 4;
+    string cardNum = 5;
+    string ownerId = 6;
+    int32 balance = 7;
+}
+
+message GetOneCardRequest {
+    string id = 1;
+}
+
+message GetAllCardsResponse {
+    repeated CardResponse card = 1;
+}
+
+message GetAllCardsRequest {
+    string dummyRequest = 1;
+}
+
+message ReplenishRequest {
+    string id = 1;
+    int32 balance = 2;
+}
+
+message CardWithdrawRequest {
+    string id = 1;
+    int32 balance = 2;
+}
+
+message CardOperationResponse {
+    CardResponse card = 1;
+}
+
+message CardCloseResponse {
+    string response = 1;
+}
+
+service CardService {
+  rpc getAll (GetAllCardsRequest) returns (GetAllCardsResponse);
+  rpc get (GetOneCardRequest) returns (CardResponse);
+  rpc create(CardRequest) returns (CardResponse);
+  rpc replenish(ReplenishRequest) returns (CardOperationResponse);
+  rpc withdraw(CardWithdrawRequest) returns (CardOperationResponse);
+  rpc close(GetOneCardRequest) returns (CardCloseResponse);
+}

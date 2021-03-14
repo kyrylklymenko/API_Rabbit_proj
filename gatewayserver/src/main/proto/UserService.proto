@@ -1,0 +1,60 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package org.example.demo;
+
+message UserRequest {
+  string name = 1;
+  string surname = 2;
+  string phoneNum = 3;
+  string birthdayDate = 4;
+  string passportId = 5;
+  string userTin = 6;
+  string userEmail = 7;
+
+}
+
+message UserResponse {
+  string id = 1;
+  string name = 2;
+  string surname = 3;
+  string phoneNum = 4;
+  string birthdayDate = 5;
+  string passportId = 6;
+  string userTin = 7;
+  string userEmail = 8;
+}
+
+message GetOneUserRequest {
+    string id = 1;
+}
+
+message GetAllUsersResponse {
+    repeated UserResponse user = 1;
+}
+
+message GetAllUsersRequest {
+    string dummyRequest = 1;
+}
+
+message AddMoneyRequest {
+    string id = 1;
+    int32 balance = 2;
+}
+
+message WithdrawMoneyRequest {
+    string id = 1;
+    int32 balance = 2;
+}
+
+message UserDeleteResponse {
+    string response = 1;
+}
+
+service UserService {
+  rpc getAll (GetAllUsersRequest) returns (GetAllUsersResponse);
+  rpc get (GetOneUserRequest) returns (UserResponse);
+  rpc create(UserRequest) returns (UserResponse);
+  rpc delete(GetOneUserRequest) returns (UserDeleteResponse);
+  rpc addMoney(AddMoneyRequest) returns (UserResponse);
+  rpc withdrawMoney(WithdrawMoneyRequest) returns (UserResponse);
+}

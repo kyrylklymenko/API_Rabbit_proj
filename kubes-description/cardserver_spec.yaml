@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cardserver
+spec:
+  selector:
+    matchLabels:
+      app: cardserver
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cardserver
+    spec:
+      containers:
+        - name: cardserver
+          image: hoceto/cardserver:latest
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8094
+            name: cardserver

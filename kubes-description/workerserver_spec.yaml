@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workerserver
+spec:
+  selector:
+    matchLabels:
+      app: workerserver
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: workerserver
+    spec:
+      containers:
+        - name: workerserver
+          image: hoceto/workerserver:latest
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8091
+            name: workerserver

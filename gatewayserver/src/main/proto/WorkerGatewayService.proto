@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package org.example.demo;
+
+import "WorkerService.proto";
+
+service WorkerGatewayService {
+  rpc getAll (GetAllWorkersRequest) returns (GetAllWorkersResponse);
+  rpc get (GetOneWorkerRequest) returns (WorkerResponse);
+  rpc create(WorkerRequest) returns (WorkerResponse);
+  rpc delete(GetOneWorkerRequest) returns (WorkerDeleteResponse);
+}

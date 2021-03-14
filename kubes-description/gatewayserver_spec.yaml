@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gatewayserver
+spec:
+  selector:
+    matchLabels:
+      app: gatewayserver
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gatewayserver
+    spec:
+      containers:
+        - name: gatewayserver
+          image: hoceto/gatewayserver:latest
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8095
+            name: gatewayserver

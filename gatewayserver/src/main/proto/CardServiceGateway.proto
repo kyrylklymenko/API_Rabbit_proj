@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package org.example.demo;
+
+import "CardService.proto";
+
+service CardGatewayService {
+  rpc getAll (GetAllCardsRequest) returns (GetAllCardsResponse);
+  rpc get (GetOneCardRequest) returns (CardResponse);
+  rpc create(CardRequest) returns (CardResponse);
+  rpc replenish(ReplenishRequest) returns (CardOperationResponse);
+  rpc withdraw(CardWithdrawRequest) returns (CardOperationResponse);
+  rpc close(GetOneCardRequest) returns (CardCloseResponse);
+}

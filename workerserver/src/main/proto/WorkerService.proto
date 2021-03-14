@@ -1,0 +1,46 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package org.example.demo;
+
+message WorkerRequest {
+  string name = 1;
+  string surname = 2;
+
+}
+
+message WorkerResponse {
+  string id = 1;
+  string name = 2;
+  string surname = 3;
+  int32 wage = 4;
+
+}
+
+message GetOneRequest {
+    string id = 1;
+}
+
+message GetAllResponse {
+    repeated WorkerResponse worker = 1;
+}
+
+message GetAllRequest {
+    string dummyRequest = 1;
+}
+
+message DeleteResponse {
+    string response = 1;
+}
+
+message workerWage {
+    string workerId = 1;
+    int32 wage = 2;
+}
+
+service WorkerService {
+  rpc getAll (GetAllRequest) returns (GetAllResponse);
+  rpc get (GetOneRequest) returns (WorkerResponse);
+  rpc create(WorkerRequest) returns (WorkerResponse);
+  rpc delete(GetOneRequest) returns (DeleteResponse);
+  rpc addWage(workerWage) returns (WorkerResponse);
+}

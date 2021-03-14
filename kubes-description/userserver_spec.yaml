@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userserver
+spec:
+  selector:
+    matchLabels:
+      app: userserver
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: userserver
+    spec:
+      containers:
+        - name: userserver
+          image: hoceto/userserver:latest
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8090
+            name: userserver

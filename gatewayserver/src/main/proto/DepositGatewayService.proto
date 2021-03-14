@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package org.example.demo;
+
+import "DepositService.proto";
+
+service DepositGatewayService {
+  rpc getAll (GetAllDepositsRequest) returns (GetAllDepositsResponse);
+  rpc get (GetOneDepositRequest) returns (DepositResponse);
+  rpc create(DepositRequest) returns (DepositResponse);
+  rpc delete(DepositWithdrawRequest) returns (DepositWithdrawResponse);
+}

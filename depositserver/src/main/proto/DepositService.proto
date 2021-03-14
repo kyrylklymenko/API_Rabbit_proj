@@ -1,0 +1,51 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package org.example.demo;
+
+message DepositRequest {
+    int32 balance = 1;
+    string openingDate = 2;
+    string ownerId = 3;
+
+}
+
+message DepositResponse {
+    string id = 1;
+    int32 balance = 2;
+    string openingDate = 3;
+    string ownerId = 4;
+
+}
+
+message GetOneRequest {
+    string id = 1;
+}
+
+message GetAllResponse {
+    repeated DepositResponse deposit = 1;
+}
+
+message GetAllRequest {
+    string dummyRequest = 1;
+}
+
+message DeleteResponse {
+    string response = 1;
+}
+
+message WithdrawResponse {
+    int32 addedBalance = 1;
+    string ownerId = 2;
+}
+
+message WithdrawRequest {
+    string id = 1;
+    string withdrawDate = 2;
+}
+
+service DepositService {
+  rpc getAll (GetAllRequest) returns (GetAllResponse);
+  rpc get (GetOneRequest) returns (DepositResponse);
+  rpc create(DepositRequest) returns (DepositResponse);
+  rpc delete(WithdrawRequest) returns (WithdrawResponse);
+}
